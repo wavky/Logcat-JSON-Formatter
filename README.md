@@ -6,7 +6,7 @@
 
 ## 功能
 
-- 自动检测第一行 JSON 开始的位置（`{` 符号）
+- 自动检测第一行 JSON 开始的位置（`{` 或 `[` 符号）
 - 移除所有行的相同前缀
 - 自动调用 JSON Pretty 格式化
 
@@ -29,6 +29,12 @@
    ```
 3. 在 VS Code 中，打开扩展面板，点击 `...` 菜单，选择 `Install from VSIX...`
 4. 选择生成的 `.vsix` 文件
+
+## 调试
+
+1. 在 VS Code 中打开本项目
+2. 按 `F5` 启动 Extension Development Host 窗口
+3. 在新窗口中打开或粘贴 Logcat 日志，执行 `Format Logcat JSON` 命令进行测试
 
 ## 要求
 
