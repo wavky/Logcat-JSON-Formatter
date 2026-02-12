@@ -37,10 +37,19 @@ function activate(context) {
 
             // Find JSON start position from first line
             const firstLine = lines[0];
-            const jsonStartIndex = firstLine.indexOf('{');
+            const braceIndex = firstLine.indexOf('{');
+            const bracketIndex = firstLine.indexOf('[');
+            let jsonStartIndex;
+            if (braceIndex === -1) {
+                jsonStartIndex = bracketIndex;
+            } else if (bracketIndex === -1) {
+                jsonStartIndex = braceIndex;
+            } else {
+                jsonStartIndex = Math.min(braceIndex, bracketIndex);
+            }
 
             if (jsonStartIndex === -1) {
-                vscode.window.showErrorMessage('第一行中没有找到 JSON 起始符号 {');
+                vscode.window.showErrorMessage('第一行中没有找到 JSON 起始符号 { 或 [');
                 return;
             }
 
