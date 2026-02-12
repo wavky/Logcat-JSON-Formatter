@@ -10,7 +10,6 @@ out/
 *.vsix
 
 # IDE
-.vscode/
 .idea/
 *.swp
 *.swo
