@@ -2,7 +2,7 @@
   "name": "logcat-json-formatter",
   "displayName": "Logcat JSON Formatter",
   "description": "格式化 Android Studio 中 Logcat 输出的 JSON 日志",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/wavky/Logcat-JSON-Formatter.git"

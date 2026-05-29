@@ -35,8 +35,19 @@ function activate(context) {
                 return;
             }
 
-            // Find JSON start position from first line
-            const firstLine = lines[0];
+            // Skip leading empty or whitespace-only lines
+            let startLineIndex = 0;
+            while (startLineIndex < lines.length && lines[startLineIndex].trim() === '') {
+                startLineIndex++;
+            }
+
+            if (startLineIndex >= lines.length) {
+                vscode.window.showErrorMessage('没有可分析的内容');
+                return;
+            }
+
+            // Find JSON start position from first non-empty line
+            const firstLine = lines[startLineIndex];
             const braceIndex = firstLine.indexOf('{');
             const bracketIndex = firstLine.indexOf('[');
             let jsonStartIndex;
@@ -53,8 +64,8 @@ function activate(context) {
                 return;
             }
 
-            // Remove prefix and join into single line
-            const cleanedLines = lines.map(line => {
+            // Remove prefix and join into single line (starting from first non-empty line)
+            const cleanedLines = lines.slice(startLineIndex).map(line => {
                 return line.length > jsonStartIndex ? line.substring(jsonStartIndex) : line;
             });
             const cleanedText = cleanedLines.join('');
